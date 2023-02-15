@@ -33,11 +33,13 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    predictions = ''
+    predictions = ""
     if request.method == 'POST':
         input_review = request.form['inputText']
         chosen_model = request.form['Model']
-
+    if(input_review == ""):
+        predictions = "Empty String"
+        return render_template('index.html',input_text = input_review, predictions=predictions)
     if chosen_model == 'Naive Bayes':
         model = naive_bayes_model
     elif chosen_model == 'Support Vector Machine':

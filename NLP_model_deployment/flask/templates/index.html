@@ -9,7 +9,7 @@
       <h1>Sentiment Analysis of Amazon Book Reviews</h1>
       <form method="POST" action="{{url_for('predict')}}">
         <label for="inputText">Enter the reviews:</label>
-        <input type="text" id="inputText" name="inputText" placeholder="Type something here...">
+        <input type="text" class = "inputText" id="inputText" name="inputText" placeholder="Type something here...">
         <label for="modelSelect">Choose a model:</label>
         <select id="modelSelect" name="Model">
           <option value="Naive Bayes">Naive Bayes</option>
@@ -18,8 +18,12 @@
         </select>
         <button type="submit">Classify Reviews</button>
       </form>
-      {% if predictions %}
-        <p class="predictions">The review "{{ input_text }}" is classified as a {{ predictions }} review.</p>
+      {% if predictions=="Empty String" %}
+        <p class="predictions">You did not input anything.</p>
+      {% else %}
+          {% if predictions %}
+            <p class="predictions">The review "{{ input_text }}" is classified as a {{ predictions }} review.</p>
+          {% endif %}
       {% endif %}
     </div>
   </body>
