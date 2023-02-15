@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sentiment Analysis of Amazon Book Reviews</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
+  </head>
+  <body>
+    <div class="background">
+      <h1>Sentiment Analysis of Amazon Book Reviews</h1>
+      <form method="POST" action="{{url_for('predict')}}">
+        <label for="inputText">Enter the reviews:</label>
+        <input type="text" id="inputText" name="inputText" placeholder="Type something here...">
+        <label for="modelSelect">Choose a model:</label>
+        <select id="modelSelect" name="Model">
+          <option value="Naive Bayes">Naive Bayes</option>
+          <option value="Support Vector Machine">Support Vector Machine</option>
+          <option value="Logistic Regression">Logistic Regression</option>
+        </select>
+        <button type="submit">Classify Reviews</button>
+      </form>
+      {% if predictions %}
+        <p class="predictions">The review "{{ input_text }}" is classified as a {{ predictions }} review.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
